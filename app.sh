@@ -11,5 +11,5 @@ case $option in
       source ./createDB.sh ;;
 	2) source ./listDB.sh ;;
 	3) echo 3 ;;
-	4) echo 4 ;;
+	4)source ./DropDB.sh ;;
 esac
