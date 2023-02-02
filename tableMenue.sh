@@ -4,9 +4,9 @@ cd ./DBs/$1
 echo $1
 pwd
 option=$(whiptail --title "Main Menu" --fb --menu "select options:" 20 60 10 \
-		"1" "Creat table" \
+		"1" "Create table" \
 		"2" "List Tables" \
-		"3" "dro Tables" \
+		"3" "drop Tables" \
 		"4" "insert into Tables" \
 		"5" "select from table" \
 		"6" "Delete from Tables" \
@@ -14,7 +14,8 @@ option=$(whiptail --title "Main Menu" --fb --menu "select options:" 20 60 10 \
 
 # echo $option ;
 case $option in 
-2) cd .. ; source ./listTables.sh ;;
+1) source ../../createTable.sh ;;
+2) source ../../listTables.sh ;;
 esac
 		
 		
