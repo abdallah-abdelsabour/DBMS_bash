@@ -1,5 +1,5 @@
 #!/bin/bash 
-echo -e "\033[30m####\033[m" > DBList
+echo -e "list all table " > DBList
 echo -e "|Database Name | number of table|" >>DBList
 for folder in DBs/* 
 	do

@@ -5,7 +5,7 @@ create=$(whiptail --inputbox "Enter Name of DataBase:" 10 60 --fb --title "Creat
 exitstatus=$?
 if [ $exitstatus = 0 ]; then
 
-	#if [ $create ]; then
+
 	if  [ "$create" = "" ] || [ "${create//[!0-9]}" != "" ] || [[ $create =~ ['!@#$%^&*()_+'] ]]; then
 		echo "Please Type a name without any special character or numbers" > test_textbox
 		whiptail --textbox test_textbox 10 60
@@ -18,7 +18,7 @@ if [ $exitstatus = 0 ]; then
 		else
 			echo "${create}'s Database created successfully" > test_textbox
 			whiptail --textbox test_textbox 10 60
-			mkdir $create
+			mkdir DBs/$create
 			source ./app.sh
 		fi
 	fi
