@@ -16,6 +16,7 @@ option=$(whiptail --title "Main Menu" --fb --menu "select options:" 20 60 10 \
 case $option in 
 1) source ../../createTable.sh ;;
 2) source ../../listTables.sh ;;
+3) source ../../Droptable.sh ;;
 esac
 		
 		
