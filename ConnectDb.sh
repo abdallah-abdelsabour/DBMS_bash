@@ -1,6 +1,6 @@
 #!/bin/bash
 
-database=$(whiptail --inputbox "Enter Name Of DataBase you Want connect :" 8 39 --title "connect Database.." 3>&1 1>&2 2>&3)
+database=$(whiptail --inputbox "Enter Name Of DataBase you Want connect :" 8 39 --fb --title "connect Database.." 3>&1 1>&2 2>&3)
 
 echo "the answer is $?"
 if [[ $database =~ [^a-zA-Z] ]]; then
