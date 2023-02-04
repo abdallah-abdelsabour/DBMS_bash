@@ -1,6 +1,6 @@
 #!/bin/bash 
-option=$(whiptail --title "Main Menu" --fb --menu "select options:" 15 60 4 \
-		"1" "Creat DataBase" \
+option=$(whiptail --title "Main Menu" --fb --menu "select From:" 15 60 4 \
+		"1" "Create DataBase" \
 		"2" "List DataBase" \
 		"3" "Connect To DataBase" \
 		"4" "Drop DataBase" 3>&1 1>&2 2>&3)

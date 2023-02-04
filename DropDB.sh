@@ -1,6 +1,6 @@
 #!/bin/bash
 
-database=$(whiptail --inputbox "Enter Name Of DataBase you Want drop :" 8 39 Blue --title "Drop Database.." 3>&1 1>&2 2>&3)
+database=$(whiptail --inputbox "Enter Name Of DataBase you Want drop :" 8 39 --title "Drop Database.." 3>&1 1>&2 2>&3)
 set -x
 if [ -d DBs/$database ];
 then 

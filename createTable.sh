@@ -5,8 +5,8 @@ createT=$(whiptail --inputbox "Enter Name of Table:" 10 60 --fb --title "Create 
 exitstatus=$?
 if [ $exitstatus = 0 ]; then
 
-	if  [ "$createT" = "" ] || [ "${createT//[!0-9]}" != "" ] || [[ $createT =~ ['!@#$%^&*()_+'] ]]; then
-		echo "Please Type a name without any special character or numbers" > test_textbox
+	if  [ "$createT" = "" ] || [ "${createT//[!0-9]}" != "" ] || [[ $createT =~ ['!@#$%^&*()_+'] ]] || [[ $createT =~ [' '] ]]; then
+		echo "Please Type a name without any special character or numbers or space" > test_textbox
 		whiptail --textbox test_textbox 10 60
 		source ../../tableMenue.sh
 	else
@@ -28,12 +28,20 @@ if [ $exitstatus = 0 ]; then
 			typeset -i i;
 			for ((i=0; i<"$numberT"; i++));
 			do
-				typeT=$(whiptail --inputbox "PLease Type name of column no.$(( $i + 1 )):" 10 60 --fb --title "Create Table" 3>&1 1>&2 2>&3)
+				if [ $i -eq 0 ];then
+					typeT=$(whiptail --inputbox "PLease Type name of column no.$(( $i + 1 )) (Primary Key):" 10 60 --fb --title "Create Table" 3>&1 1>&2 2>&3)
+				else 
+					typeT=$(whiptail --inputbox "PLease Type name of column no.$(( $i + 1 )):" 10 60 --fb --title "Create Table" 3>&1 1>&2 2>&3)
+				fi
 				while [ "$typeT" = "" ] || [ "${typeT//[!0-9]}" != "" ]
 				do
 					echo "Please Type a name without numbers or empty" > test_textbox
 					whiptail --textbox test_textbox 10 60
-					typeT=$(whiptail --inputbox "PLease Type name of column no.$(( $i + 1 )):" 10 60 --fb --title "Create Table" 3>&1 1>&2 2>&3)
+					if [ $i -eq 0 ];then
+						typeT=$(whiptail --inputbox "PLease Type name of column no.$(( $i + 1 )) (Primary Key):" 10 60 --fb --title "Create Table" 3>&1 1>&2 2>&3)
+					else 
+						typeT=$(whiptail --inputbox "PLease Type name of column no.$(( $i + 1 )):" 10 60 --fb --title "Create Table" 3>&1 1>&2 2>&3)
+					fi
 				done
 				echo -n $typeT >> $createT 
 				option=$(whiptail --title "Type of coulmn no.$(( $i + 1 )):" --fb --menu "select options:" 15 60 2 \
@@ -41,7 +49,7 @@ if [ $exitstatus = 0 ]; then
 					"2" "Integer" 3>&1 1>&2 2>&3)
 				case $option in 
 					1) echo -n "String" >> .$createT;;
-					2)  echo -n "Integer" >> .$createT;;
+					2) echo -n "Integer" >> .$createT;;
 				esac
 				if [ "$numberT" -gt "$(( $i + 1 ))" ];then
 					echo -n ":" >> $createT;
@@ -52,6 +60,7 @@ if [ $exitstatus = 0 ]; then
 			whiptail --textbox test_textbox 10 60
 		fi
 	fi
+rm -r test_textbox
 source ../../tableMenue.sh
 else
 	rm -r $createT;
