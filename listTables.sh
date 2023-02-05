@@ -1,14 +1,5 @@
-echo -e "list all table " > DBList
-echo -e "|Database Name | number of table|" >>DBList
-for table in DBs/$1 
-	do
+#!/bin/bash
 
-
-		echo "|-------------------------------|" >> DBList
-		echo "|" $(basename $folder) "                  " $(ls -l $folder |wc -l )  >> DBList
-done
-
-
-whiptail --scrolltext --textbox  DBList  $LINES $COLUMNS $(( $LINES - 12 ))
-source ./app.sh
-
+table_list=$(ls -1)
+whiptail --title "Tables" --msgbox "$table_list" 30 78
+source ../../tableMenue.sh

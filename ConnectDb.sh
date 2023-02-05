@@ -1,9 +1,10 @@
 #!/bin/bash
 
-database=$(whiptail --inputbox "Enter Name Of DataBase you Want connect :" 8 39 Blue --title "connect Database.." 3>&1 1>&2 2>&3)
+database=$(whiptail --inputbox "Enter Name Of DataBase you Want connect :" 8 39  --title "connect Database.." 3>&1 1>&2 2>&3)
 
 echo "the answer is $?"
-if [[ $database =~ [^a-zA-Z] ]]; then
+# if [[ $database =~ [^a-zA-Z]  ]]; then
+if  [ "$database" = "" ] || [ "${database//[!0-9]}" != "" ] || [[ $database =~ ['!@#$%^&*()_+'] ]] || [[ $database =~ [' '] ]]; then
 	#handle the error here 
 	#@todo:handle exit code
 	#
@@ -14,10 +15,9 @@ source ./ConnectDb.sh
 fi
 
 #after handle spaces and specila charcter
+
 if [ -d DBs/$database ] ; then
 source ./tableMenue.sh $database 
-
-
 	echo "folder exist"
 
 else
